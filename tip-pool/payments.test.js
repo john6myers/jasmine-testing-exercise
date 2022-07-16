@@ -1,10 +1,10 @@
-describe("Payments test (with setup and tear-down)", () => {
+describe("Payments test (with setup and tear-down)", function() {
     beforeEach(function () {
       billAmtInput.value = 100;
       tipAmtInput.value = 20;
     });
   
-    it('should add a new payment to allPayments on submitPaymentInfo()', () => {
+    it('should add a new payment to allPayments on submitPaymentInfo()', function () {
       submitPaymentInfo();
   
       expect(Object.keys(allPayments).length).toEqual(1);
@@ -13,14 +13,14 @@ describe("Payments test (with setup and tear-down)", () => {
       expect(allPayments['payment1'].tipPercent).toEqual(20);
     });
   
-    it('should not add a new payment on submitPaymentInfo() with empty input', () => {
+    it('should not add a new payment on submitPaymentInfo() with empty input', function () {
       billAmtInput.value = '';
       submitPaymentInfo();
   
       expect(Object.keys(allPayments).length).toEqual(0);
     });
   
-    it('should payment update #paymentTable on appendPaymentTable()', () => {
+    it('should payment update #paymentTable on appendPaymentTable()', function () {
       let curPayment = createCurPayment();
       allPayments['payment1'] = curPayment;
   
@@ -35,7 +35,7 @@ describe("Payments test (with setup and tear-down)", () => {
       expect(curTdList[3].innerText).toEqual('X');
     });
   
-    it('should create a new payment on createCurPayment()', () => {
+    it('should create a new payment on createCurPayment()', function () {
       let expectedPayment = {
         billAmt: '100',
         tipAmt: '20',
@@ -45,7 +45,7 @@ describe("Payments test (with setup and tear-down)", () => {
       expect(createCurPayment()).toEqual(expectedPayment);
     });
   
-    it('should not create payment with empty input on createCurPayment()', () => {
+    it('should not create payment with empty input on createCurPayment()', function () {
       billAmtInput.value = '';
       tipAmtInput.value = '';
       let curPayment = createCurPayment();
